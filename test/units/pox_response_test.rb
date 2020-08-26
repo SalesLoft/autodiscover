@@ -49,6 +49,12 @@ describe Autodiscover::PoxResponse do
       _(_inst.expr_proto).must_equal({})
       _(_inst.web_proto).must_equal({})
     end
-  end
 
+    it "returns empty Hashes when the Account has no protocols" do
+      _inst.response["Account"].delete("Protocol")
+      _(_inst.exch_proto).must_equal({})
+      _(_inst.expr_proto).must_equal({})
+      _(_inst.web_proto).must_equal({})
+    end
+  end
 end
