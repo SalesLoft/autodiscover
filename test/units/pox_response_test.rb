@@ -18,7 +18,7 @@ describe Autodiscover::PoxResponse do
 
   describe "#exchange_version" do
     it "returns an Exchange version usable for EWS" do
-      _(_class.new(response).exchange_version).must_equal "Exchange2013_SP1"
+      _(_class.new(response).exchange_version).must_equal "Exchange2016"
     end
   end
 
@@ -49,6 +49,12 @@ describe Autodiscover::PoxResponse do
       _(_inst.expr_proto).must_equal({})
       _(_inst.web_proto).must_equal({})
     end
-  end
 
+    it "returns empty Hashes when the Account has no protocols" do
+      _inst.response["Account"].delete("Protocol")
+      _(_inst.exch_proto).must_equal({})
+      _(_inst.expr_proto).must_equal({})
+      _(_inst.web_proto).must_equal({})
+    end
+  end
 end
