@@ -42,7 +42,7 @@ module Autodiscover
     end
 
     def exchange_version
-      VERSIONS.dig(major, minor) || VERSIONS[8][0]
+      VERSIONS.dig(major, minor) || VERSIONS[15][1]
     end
 
   end
