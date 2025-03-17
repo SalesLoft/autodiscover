@@ -15,4 +15,8 @@ describe Autodiscover::ServerVersionParser do
     inst.exchange_version.must_equal "Exchange2010_SP1"
   end
 
+  it "handles nil version with default" do
+    inst = _class.new(nil)
+    _(inst.exchange_version).must_equal "Exchange2016"
+  end
 end
