@@ -15,4 +15,21 @@ describe Autodiscover::ServerVersionParser do
     inst.exchange_version.must_equal "Exchange2010_SP1"
   end
 
+  it "handles unknown version with default" do
+    inst = _class.new("6C8180DA")
+    _(inst.major).must_equal 13
+    _(inst.exchange_version).must_equal "Exchange2007"
+  end
+
+  it "handles unknown minor version with default" do
+    inst = _class.new("738280DA")
+    _(inst.major).must_equal 14
+    _(inst.minor).must_equal 4
+    _(inst.exchange_version).must_equal "Exchange2007"
+  end
+
+  it "handles nil version with default" do
+    inst = _class.new(nil)
+    _(inst.exchange_version).must_equal "Exchange2007"
+  end
 end

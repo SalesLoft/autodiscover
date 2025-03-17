@@ -9,9 +9,7 @@ module Autodiscover
     end
 
     def exchange_version
-      server_version = exch_proto["ServerVersion"]
-      return "Exchange2016" if server_version.nil?
-      ServerVersionParser.new(server_version).exchange_version
+      ServerVersionParser.new(exch_proto["ServerVersion"]).exchange_version
     end
 
     def ews_url
@@ -35,5 +33,6 @@ module Autodiscover
     def protocols
       response["Account"]["Protocol"] || []
     end
+    
   end
 end

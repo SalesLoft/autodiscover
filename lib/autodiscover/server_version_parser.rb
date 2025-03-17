@@ -38,8 +38,7 @@ module Autodiscover
     end
 
     def exchange_version
-      v = VERSIONS[major][minor]
-      v.nil? ? VERSIONS[8][0] : v
+      VERSIONS.dig(major, minor) || VERSIONS[8][0]
     end
 
   end
