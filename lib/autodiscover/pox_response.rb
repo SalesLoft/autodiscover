@@ -35,6 +35,5 @@ module Autodiscover
     def protocols
       response["Account"]["Protocol"] || []
     end
-
   end
 end
