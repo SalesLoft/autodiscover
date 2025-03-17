@@ -22,7 +22,11 @@ module Autodiscover
     }
 
     def initialize(hexversion)
-      @version = hexversion.hex.to_s(2).rjust(hexversion.size*4, '0')
+      if hexversion.nil?
+        @version = "00000000000000000000000000000000"
+      else
+        @version = hexversion.hex.to_s(2).rjust(hexversion.size*4, '0')
+      end
     end
 
     def major
