@@ -23,14 +23,8 @@ describe Autodiscover::PoxResponse do
     
     it "defaults to Exchange2016 when ServerVersion is nil (for Amazon WorkMail compatibility)" do
       response_obj = _class.new(response)
-      # Save original ServerVersion
-      saved_server_version = response_obj.exch_proto["ServerVersion"]
-      # Simulate missing ServerVersion
       response_obj.exch_proto.delete("ServerVersion")
-      # Verify default value
       _(response_obj.exchange_version).must_equal "Exchange2016"
-      # Restore original ServerVersion for other tests
-      response_obj.exch_proto["ServerVersion"] = saved_server_version
     end
   end
 
